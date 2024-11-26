@@ -1,10 +1,7 @@
 ﻿//є стара система, що друкує текст лише у вигляді рядка. Ми хочемо адаптувати її, щоб вона працювала з новим форматом — друком об'єктів типу NewMessageFormat
 
-using System;
-
-namespace AdapterExample
+namespace Adapter
 {
-    // Клас старої системи, який друкує лише рядки
     public class OldSystemPrinter
     {
         public void PrintString(string message)
@@ -13,19 +10,16 @@ namespace AdapterExample
         }
     }
 
-    // Цільовий інтерфейс, який ми хочемо використовувати
     public interface INewPrinter
     {
         void Print(NewMessageFormat message);
     }
 
-    // Клас нового формату повідомлення
     public class NewMessageFormat
     {
         public string Content { get; set; }
     }
 
-    // Адаптер, що реалізує новий інтерфейс та використовує старий клас
     public class PrinterAdapter : INewPrinter
     {
         private readonly OldSystemPrinter _oldSystemPrinter;
@@ -37,7 +31,6 @@ namespace AdapterExample
 
         public void Print(NewMessageFormat message)
         {
-            // Адаптація нового формату до старого
             _oldSystemPrinter.PrintString(message.Content);
         }
     }
@@ -46,12 +39,11 @@ namespace AdapterExample
     {
         static void Main(string[] args)
         {
-            // Використання старої системи через адаптер
             OldSystemPrinter oldPrinter = new OldSystemPrinter();
             INewPrinter adapter = new PrinterAdapter(oldPrinter);
 
             NewMessageFormat newMessage = new NewMessageFormat { Content = "Hello, Adapter Pattern!" };
-            adapter.Print(newMessage); // Виведе за допомогою старої системи
+            adapter.Print(newMessage);
 
             Console.ReadKey();
         }

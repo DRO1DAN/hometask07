@@ -4,13 +4,11 @@ using System;
 
 namespace FactoryMethodExample
 {
-    // Product
     public abstract class Message
     {
         public abstract void Send();
     }
 
-    // Concrete Products
     public class EmailMessage : Message
     {
         public override void Send()
@@ -35,13 +33,11 @@ namespace FactoryMethodExample
         }
     }
 
-    // Creator
     public abstract class MessageFactory
     {
         public abstract Message CreateMessage();
     }
 
-    // Concrete Creators
     public class EmailFactory : MessageFactory
     {
         public override Message CreateMessage()
@@ -70,12 +66,10 @@ namespace FactoryMethodExample
     {
         static void Main(string[] args)
         {
-            // Create a factory for each message type
             MessageFactory emailFactory = new EmailFactory();
             MessageFactory smsFactory = new SMSFactory();
             MessageFactory pushFactory = new PushNotificationFactory();
 
-            // Create and send messages
             Message email = emailFactory.CreateMessage();
             email.Send();
 

@@ -6,29 +6,24 @@ namespace Decorator.Examples
     {
         static void Main()
         {
-            // Create a Christmas tree and apply two decorators: ornaments and garlands
             ChristmasTree christmasTree = new ChristmasTree();
             OrnamentDecorator ornaments = new OrnamentDecorator();
             GarlandDecorator garland = new GarlandDecorator();
 
-            // Decorate the tree with ornaments and garlands
             ornaments.SetTree(christmasTree);
             garland.SetTree(ornaments);
 
-            // Display the decorated tree
             garland.Display();
 
             Console.Read();
         }
     }
 
-    // "Component"
     abstract class Tree
     {
         public abstract void Display();
     }
 
-    // "ConcreteComponent"
     class ChristmasTree : Tree
     {
         public override void Display()
@@ -37,7 +32,6 @@ namespace Decorator.Examples
         }
     }
 
-    // "Decorator"
     abstract class TreeDecorator : Tree
     {
         protected Tree tree;
@@ -56,7 +50,6 @@ namespace Decorator.Examples
         }
     }
 
-    // "ConcreteDecoratorA" - Adds ornaments to the tree
     class OrnamentDecorator : TreeDecorator
     {
         private string ornaments = "Ornaments";
@@ -68,7 +61,6 @@ namespace Decorator.Examples
         }
     }
 
-    // "ConcreteDecoratorB" - Adds garland lights to the tree
     class GarlandDecorator : TreeDecorator
     {
         public override void Display()
